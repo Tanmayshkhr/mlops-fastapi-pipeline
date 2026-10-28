@@ -10,12 +10,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest httpx
       - name: Run tests
         run: PYTHONPATH=. pytest tests/
       - name: Build Docker image
