@@ -13,9 +13,10 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest
+          pip install pytest httpx
       - name: Run tests
-        run: pytest tests/
+        run: PYTHONPATH=. pytest tests/
       - name: Build Docker image
         run: docker build -t heart-api .
