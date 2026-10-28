@@ -13,11 +13,9 @@ jobs:
           python-version: '3.10'
       - name: Install dependencies
         run: |
-          pip install -r mlops-fastapi-pipeline/requirements.txt
+          pip install -r requirements.txt
           pip install pytest
       - name: Run tests
-        run: pytest mlops-fastapi-pipeline/tests/
+        run: pytest tests/
       - name: Build Docker image
-        run: |
-          cd mlops-fastapi-pipeline
-          docker build -t heart-api .
+        run: docker build -t heart-api .
