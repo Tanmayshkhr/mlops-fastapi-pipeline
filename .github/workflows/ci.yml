@@ -1,0 +1,23 @@
+name: CI Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install -r mlops-fastapi-pipeline/requirements.txt
+          pip install pytest
+      - name: Run tests
+        run: pytest mlops-fastapi-pipeline/tests/
+      - name: Build Docker image
+        run: |
+          cd mlops-fastapi-pipeline
+          docker build -t heart-api .
